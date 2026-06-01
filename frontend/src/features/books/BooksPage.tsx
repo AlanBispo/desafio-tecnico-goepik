@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { Toaster, toast } from "sonner";
 
 import { BookModal } from "./components/BookModal";
 import { BooksList } from "./components/BooksList";
@@ -62,7 +63,7 @@ export function BooksPage() {
       setIsModalOpen(false);
       return true;
     } catch {
-      setError("Não foi possível cadastrar o livro.");
+      toast.error("Não foi possível cadastrar o livro.");
       return false;
     } finally {
       setIsSubmitting(false);
@@ -148,6 +149,8 @@ export function BooksPage() {
           onSubmit={handleCreateBook}
         />
       )}
+
+      <Toaster richColors position="top-right" />
     </main>
   );
 }
