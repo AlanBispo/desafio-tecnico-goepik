@@ -6,3 +6,5 @@ export type Book = {
 };
 
 export type CreateBookInput = Omit<Book, "id">;
+
+export type SortOrder = "asc" | "desc";

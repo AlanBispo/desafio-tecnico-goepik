@@ -23,6 +23,14 @@
   font-weight: 700;
 }
 
+.books-page__new-button:focus-visible,
+.book-form__button:focus-visible,
+.books-list__delete:focus-visible,
+.book-modal__close:focus-visible {
+  outline: 3px solid #bfdbfe;
+  outline-offset: 2px;
+}
+
 .books-section {
   display: flex;
   flex-direction: column;
@@ -110,6 +118,11 @@
 .book-form__field input:focus {
   border-color: #2563eb;
   outline: 3px solid #dbeafe;
+}
+
+.book-form__field input:disabled {
+  cursor: not-allowed;
+  background: #f3f4f6;
 }
 
 .book-form__button {
@@ -263,6 +276,11 @@
   cursor: pointer;
   font-size: 24px;
   line-height: 1;
+}
+
+.book-modal__close:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
 .book-modal .book-form {

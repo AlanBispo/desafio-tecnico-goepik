@@ -21,6 +21,7 @@ export function BookModal({ isSubmitting, onClose, onSubmit }: BookModalProps) {
           <button
             aria-label="Fechar modal"
             className="book-modal__close"
+            disabled={isSubmitting}
             onClick={onClose}
             type="button"
           >

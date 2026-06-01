@@ -15,9 +15,16 @@ export function BookForm({ isSubmitting, onSubmit }: BookFormProps) {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    const trimmedTitle = title.trim();
+    const trimmedAuthor = author.trim();
+
+    if (!trimmedTitle || !trimmedAuthor || !year) {
+      return;
+    }
+
     const wasCreated = await onSubmit({
-      title: title.trim(),
-      author: author.trim(),
+      title: trimmedTitle,
+      author: trimmedAuthor,
       year: Number(year),
     });
 
@@ -34,6 +41,7 @@ export function BookForm({ isSubmitting, onSubmit }: BookFormProps) {
         <label htmlFor="title">Título</label>
         <input
           id="title"
+          disabled={isSubmitting}
           minLength={1}
           name="title"
           onChange={(event) => setTitle(event.target.value)}
@@ -48,6 +56,7 @@ export function BookForm({ isSubmitting, onSubmit }: BookFormProps) {
         <label htmlFor="author">Autor</label>
         <input
           id="author"
+          disabled={isSubmitting}
           minLength={1}
           name="author"
           onChange={(event) => setAuthor(event.target.value)}
@@ -62,6 +71,7 @@ export function BookForm({ isSubmitting, onSubmit }: BookFormProps) {
         <label htmlFor="year">Ano</label>
         <input
           id="year"
+          disabled={isSubmitting}
           min={1}
           name="year"
           onChange={(event) => setYear(event.target.value)}

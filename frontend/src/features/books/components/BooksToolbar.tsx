@@ -1,4 +1,4 @@
-type SortOrder = "asc" | "desc";
+import { SortOrder } from "../types/book";
 
 type BooksToolbarProps = {
   searchTerm: string;

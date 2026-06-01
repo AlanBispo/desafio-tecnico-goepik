@@ -6,9 +6,7 @@ import { BooksList } from "./components/BooksList";
 import { BooksToolbar } from "./components/BooksToolbar";
 import { createBook, deleteBook, getBooks } from "./services/booksApi";
 import "./books.css";
-import { Book, CreateBookInput } from "./types/book";
-
-type SortOrder = "asc" | "desc";
+import { Book, CreateBookInput, SortOrder } from "./types/book";
 
 export function BooksPage() {
   const [books, setBooks] = useState<Book[]>([]);
@@ -71,6 +69,12 @@ export function BooksPage() {
   }
 
   async function handleDeleteBook(bookId: string) {
+    const shouldDelete = window.confirm("Deseja excluir este livro?");
+
+    if (!shouldDelete) {
+      return;
+    }
+
     setError("");
     setDeletingBookId(bookId);
 
@@ -81,7 +85,7 @@ export function BooksPage() {
         currentBooks.filter((book) => book.id !== bookId)
       );
     } catch {
-      setError("Não foi possível excluir o livro.");
+      toast.error("Não foi possível excluir o livro.");
     } finally {
       setDeletingBookId(null);
     }
